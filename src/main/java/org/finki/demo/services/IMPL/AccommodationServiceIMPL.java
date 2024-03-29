@@ -30,18 +30,27 @@ public class AccommodationServiceIMPL implements AccommodationService {
     }
 
     @Override
-    public Optional<Accommodation> deleteAccommodation(Long id) {
-        return Optional.empty();
+    public Accommodation deleteAccommodation(Long id) {
+        Accommodation accommodation = accommodationRepo.findById(id).get();
+        accommodationRepo.deleteById(id);
+        return accommodation;
     }
 
     @Override
-    public Optional<Accommodation> editAccommodation(Long id, AccommodationDTO accommodationDTO) {
-        return Optional.empty();
+    public Accommodation editAccommodation(Long id, AccommodationDTO accommodationDTO) {
+        Accommodation accommodation = accommodationRepo.findById(id).get();
+        accommodation.setCategory(accommodationDTO.category());
+        accommodation.setHost(hostRepo.findById(accommodationDTO.hostId()).get());
+        accommodation.setNumRooms(accommodationDTO.availableRooms());
+
+        return accommodation;
     }
 
     @Override
-    public Optional<Accommodation> markRented(Long id) {
-        return Optional.empty();
+    public Accommodation markRented(Long id) {
+        Accommodation accommodation = accommodationRepo.findById(id).get();
+        accommodation.setRented(!accommodation.isRented());
+        return accommodation;
     }
 
     @Override

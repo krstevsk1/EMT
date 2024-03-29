@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface AccommodationService {
     Accommodation addAccommodation(AccommodationDTO accommodationDTO) throws Exception;
 
-    Optional<Accommodation> deleteAccommodation(Long id);
+    Accommodation deleteAccommodation(Long id);
 
-    Optional<Accommodation> editAccommodation(Long id, AccommodationDTO accommodationDTO);
+    Accommodation editAccommodation(Long id, AccommodationDTO accommodationDTO);
 
-    Optional<Accommodation> markRented(Long id);
+    Accommodation markRented(Long id);
 
     Accommodation findAccommodation(Long id);
 }

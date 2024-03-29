@@ -21,8 +21,8 @@ public class HostController {
 
 
 
-    @PostMapping("/add-author")
-    public ResponseEntity<Host> addAuthor(@NonNull @RequestBody HostDTO hostDTO) throws Exception {
+    @PostMapping("/add-host")
+    public ResponseEntity<Host> addHost(@NonNull @RequestBody HostDTO hostDTO) throws Exception {
 
         if(countryService.findCountry(hostDTO.countryId()).isEmpty()) {
             return ResponseEntity.notFound().build();

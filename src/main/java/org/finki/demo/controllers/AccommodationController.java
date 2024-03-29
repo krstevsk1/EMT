@@ -35,31 +35,26 @@ public class AccommodationController {
             return ResponseEntity.notFound().build();
         }
 
-        return this.accommodationService.deleteAccommodation(id)
-                .map(book -> ResponseEntity.ok().body(book))
-                .orElseGet(() -> ResponseEntity.badRequest().build());
+        return ResponseEntity.ok(accommodationService.deleteAccommodation(id));
     }
 
-    @PutMapping("/edit-accommodation/{id}")
-    public ResponseEntity<Accommodation> editBook(@NonNull @PathVariable Long id, @NonNull @RequestBody AccommodationDTO accommodationDTO) {
+    @PostMapping("/edit-accommodation/{id}")
+    public ResponseEntity<Accommodation> editAccommodation(@NonNull @PathVariable Long id, @NonNull @RequestBody AccommodationDTO accommodationDTO) {
 
         if(hostService.findHost(accommodationDTO.hostId()).isEmpty() || accommodationService.findAccommodation(id) == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return accommodationService.editAccommodation(id, accommodationDTO).map(accommodation -> ResponseEntity.ok().body(accommodation))
-                .orElseGet(() -> ResponseEntity.badRequest().build());
+        return ResponseEntity.ok(accommodationService.editAccommodation(id, accommodationDTO));
     }
 
-    @PutMapping("/mark-rented/{id}")
-    public ResponseEntity<Accommodation> markRented(@NonNull @PathVariable Long id){
+    @PostMapping("/mark-rented/{id}")
+    public ResponseEntity<Accommodation> markRented(@NonNull @PathVariable("id") Long id){
 
         if(accommodationService.findAccommodation(id) == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return this.accommodationService.markRented(id)
-                .map(accommodation -> ResponseEntity.ok().body(accommodation))
-                .orElseGet(() -> ResponseEntity.badRequest().build());
+        return ResponseEntity.ok(this.accommodationService.markRented(id));
     }
 }

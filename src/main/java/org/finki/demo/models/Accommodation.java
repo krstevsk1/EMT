@@ -23,6 +23,8 @@ public class Accommodation {
 
     private int numRooms;
 
+    private boolean rented;
+
     public Accommodation(String name, Category category, Host host, int numRooms) {
         this.name = name;
         this.category = category;

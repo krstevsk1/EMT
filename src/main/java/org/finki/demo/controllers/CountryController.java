@@ -6,10 +6,7 @@ import org.finki.demo.models.Country;
 import org.finki.demo.models.DTOs.CountryDTO;
 import org.finki.demo.services.CountryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +17,8 @@ public class CountryController {
 
     private final CountryService countryService;
 
-    @GetMapping
-    public ResponseEntity<Country> addCountry(@NonNull CountryDTO countryDTO){
+    @PostMapping
+    public ResponseEntity<Country> addCountry(@NonNull @RequestBody CountryDTO countryDTO){
         if(countryDTO.name() == null || countryDTO.continent() == null){
             return ResponseEntity.badRequest().build();
         }
